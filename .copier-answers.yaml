@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier
+_commit: '4875149'
+_src_path: https://github.com/python-project-templates/base.git
+add_docs: true
+add_extension: python
+add_wiki: false
+email: t.paine154@gmail.com
+github: airflow-laminar
+project_description: Pydantic models for cron
+project_name: cron-pydantic
+python_version_primary: '3.11'
+team: the cron-pydantic authors
