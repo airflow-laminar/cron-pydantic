@@ -1,0 +1,6 @@
+﻿cron\_pydantic.SpecialSchedule
+==============================
+
+.. currentmodule:: cron_pydantic
+
+.. autodata:: SpecialSchedule

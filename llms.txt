@@ -1,0 +1,23 @@
+# cron-pydantic
+
+> Pydantic models for cron schedules, jobs, and crontab files
+
+
+the cron-pydantic authors
+
+## Pages
+
+- [cron-pydantic](index.html.md): Typed, YAML-friendly models for cron schedules, jobs, and crontab files.
+- [API reference](docs/src/api.html.md): The public API is re-exported from `cron_pydantic`.
+- [cron_pydantic.CronConfiguration](docs/src/_build/cron_pydantic.CronConfiguration.html.md): Bases: `BaseModel`
+- [cron_pydantic.CronJobConfiguration](docs/src/_build/cron_pydantic.CronJobConfiguration.html.md): Bases: `BaseModel`
+- [cron_pydantic.CronSchedule](docs/src/_build/cron_pydantic.CronSchedule.html.md): Bases: `BaseModel`
+- [cron_pydantic.SpecialSchedule](docs/src/_build/cron_pydantic.SpecialSchedule.html.md): alias of `Literal`[[‘@reboot](mailto:'@reboot)’, [‘@yearly](mailto:'@yearly)’, [‘@annually](mailto:'...
+- [cron_pydantic.load_config](docs/src/_build/cron_pydantic.load_config.html.md): Page content
+- [Why modeling and installation are separate](docs/src/explanation.html.md): `cron-pydantic` treats a crontab as data: schedules and commands are validated,
+- [How-to guides](docs/src/how-to.html.md): These guides cover common crontab modeling and integration tasks.
+- [Tutorial: build a crontab](docs/src/tutorial.html.md): In this tutorial, we will validate two cron jobs, render their crontab, and
+
+---
+
+For more comprehensive documentation, see [llms-full.txt](llms-full.txt)

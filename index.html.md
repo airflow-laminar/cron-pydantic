@@ -1,22 +1,3 @@
-```{toctree}
----
-maxdepth: 2
-hidden: true
----
-
-
-
-docs/src/tutorial.md
-
-docs/src/how-to.md
-
-docs/src/explanation.md
-
-docs/src/api.md
-
-
-```
-
 # cron-pydantic
 
 Typed, YAML-friendly models for cron schedules, jobs, and crontab files.
@@ -68,5 +49,5 @@ Published documentation is available at
 - [airflow-pydantic](https://github.com/airflow-laminar/airflow-pydantic) supplies declarative Airflow models.
 - [airflow-config](https://github.com/airflow-laminar/airflow-config) loads YAML-based Airflow configurations.
 
-> [!NOTE]
-> This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).
+#### NOTE
+This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).

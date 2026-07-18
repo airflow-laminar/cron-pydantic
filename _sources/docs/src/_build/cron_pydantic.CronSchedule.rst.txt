@@ -1,0 +1,6 @@
+﻿cron\_pydantic.CronSchedule
+===========================
+
+.. currentmodule:: cron_pydantic
+
+.. autopydantic_model:: CronSchedule

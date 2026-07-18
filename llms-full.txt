@@ -1,0 +1,372 @@
+# index.html.md
+
+# cron-pydantic
+
+Typed, YAML-friendly models for cron schedules, jobs, and crontab files.
+
+[![Build Status](https://github.com/airflow-laminar/cron-pydantic/actions/workflows/build.yaml/badge.svg?branch=main&event=push)](https://github.com/airflow-laminar/cron-pydantic/actions/workflows/build.yaml)
+[![codecov](https://codecov.io/gh/airflow-laminar/cron-pydantic/branch/main/graph/badge.svg)](https://codecov.io/gh/airflow-laminar/cron-pydantic)
+[![License](https://img.shields.io/github/license/airflow-laminar/cron-pydantic)](https://github.com/airflow-laminar/cron-pydantic)
+[![PyPI](https://img.shields.io/pypi/v/cron-pydantic.svg)](https://pypi.python.org/pypi/cron-pydantic)
+
+```python
+from cron_pydantic import CronConfiguration
+
+config = CronConfiguration.model_validate(
+    {
+        "environment": {"PATH": "/usr/local/bin:/usr/bin"},
+        "job": {
+            "backup": {
+                "schedule": "0 2 * * *",
+                "command": "/opt/jobs/backup",
+            }
+        },
+    }
+)
+
+print(config.to_cron())
+```
+
+`cron-pydantic` validates five-field and special schedules, renders user and
+system crontabs, parses existing crontab text, and loads YAML. File output is
+explicit; the package never installs or replaces a host crontab.
+
+## Documentation
+
+- [Tutorial: build a crontab](docs/src/tutorial.md)
+- [How-to guides](docs/src/how-to.md)
+- [Why modeling and installation are separate](docs/src/explanation.md)
+- [API reference](docs/src/api.md)
+
+Published documentation is available at
+[airflow-laminar.github.io/cron-pydantic](https://airflow-laminar.github.io/cron-pydantic/).
+
+## Ecosystem
+
+- [supervisor-pydantic](https://github.com/airflow-laminar/supervisor-pydantic) models supervisord processes.
+- [systemd-pydantic](https://github.com/airflow-laminar/systemd-pydantic) models systemd services and timers.
+- [airflow-supervisor](https://github.com/airflow-laminar/airflow-supervisor) manages supervisord jobs from Airflow.
+- [airflow-cron](https://github.com/airflow-laminar/airflow-cron) converts cron jobs into Airflow DAG models.
+- [airflow-systemd](https://github.com/airflow-laminar/airflow-systemd) manages systemd services from Airflow.
+- [airflow-pydantic](https://github.com/airflow-laminar/airflow-pydantic) supplies declarative Airflow models.
+- [airflow-config](https://github.com/airflow-laminar/airflow-config) loads YAML-based Airflow configurations.
+
+#### NOTE
+This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).
+
+
+# api.html.md
+
+# API reference
+
+The public API is re-exported from `cron_pydantic`.
+
+| [`CronSchedule`](_build/cron_pydantic.CronSchedule.md#cron_pydantic.CronSchedule)                         | Five-field Vixie/Cronie schedule.                                                                                                                                                                                                                                          |
+|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`CronJobConfiguration`](_build/cron_pydantic.CronJobConfiguration.md#cron_pydantic.CronJobConfiguration) | Command and schedule for one crontab entry.                                                                                                                                                                                                                                |
+| [`CronConfiguration`](_build/cron_pydantic.CronConfiguration.md#cron_pydantic.CronConfiguration)          | Environment and named jobs rendered as one crontab file.                                                                                                                                                                                                                   |
+| [`SpecialSchedule`](_build/cron_pydantic.SpecialSchedule.md#cron_pydantic.SpecialSchedule)                | alias of `Literal`[['@reboot](mailto:'@reboot)', ['@yearly](mailto:'@yearly)', ['@annually](mailto:'@annually)', ['@monthly](mailto:'@monthly)', ['@weekly](mailto:'@weekly)', ['@daily](mailto:'@daily)', ['@midnight](mailto:'@midnight)', ['@hourly](mailto:'@hourly)'] |
+| [`load_config`](_build/cron_pydantic.load_config.md#cron_pydantic.load_config)(path)                      |                                                                                                                                                                                                                                                                            |
+
+
+# cron_pydantic.CronConfiguration.html.md
+
+# cron_pydantic.CronConfiguration
+
+### *pydantic model* cron_pydantic.CronConfiguration
+
+Bases: `BaseModel`
+
+Environment and named jobs rendered as one crontab file.
+
+#### *field* job *: dict[str, [CronJobConfiguration](cron_pydantic.CronJobConfiguration.md#cron_pydantic.CronJobConfiguration)]* *[Required]*
+
+#### *field* environment *: dict[str, str]* *[Optional]*
+
+#### *field* system *: bool* *= False*
+
+#### *field* path *: Path | None* *= None*
+
+#### to_cron() → str
+
+#### write(path: Path | str | None = None) → Path
+
+#### *classmethod* from_cron(contents: str, , system: bool = False, path: Path | None = None) → Self
+
+#### *classmethod* load(path: Path | str) → Self
+
+
+# cron_pydantic.CronJobConfiguration.html.md
+
+# cron_pydantic.CronJobConfiguration
+
+### *pydantic model* cron_pydantic.CronJobConfiguration
+
+Bases: `BaseModel`
+
+Command and schedule for one crontab entry.
+
+#### *field* schedule *: [CronSchedule](cron_pydantic.CronSchedule.md#cron_pydantic.CronSchedule) | SpecialSchedule* *[Required]*
+
+#### *field* command *: Command* *[Required]*
+
+#### *field* user *: str | None* *= None*
+
+#### *field* enabled *: bool* *= True*
+
+#### to_cron(system: bool = False) → str
+
+
+# cron_pydantic.CronSchedule.html.md
+
+# cron_pydantic.CronSchedule
+
+### *pydantic model* cron_pydantic.CronSchedule
+
+Bases: `BaseModel`
+
+Five-field Vixie/Cronie schedule.
+
+#### *field* minute *: str | int* *= '\*'*
+
+#### *field* hour *: str | int* *= '\*'*
+
+#### *field* day_of_month *: str | int* *= '\*'*
+
+#### *field* month *: str | int* *= '\*'*
+
+#### *field* day_of_week *: str | int* *= '\*'*
+
+#### to_cron() → str
+
+#### *classmethod* from_cron(expression: str) → Self
+
+
+# cron_pydantic.SpecialSchedule.html.md
+
+# cron_pydantic.SpecialSchedule
+
+### cron_pydantic.SpecialSchedule
+
+alias of `Literal`[[‘@reboot](mailto:'@reboot)’, [‘@yearly](mailto:'@yearly)’, [‘@annually](mailto:'@annually)’, [‘@monthly](mailto:'@monthly)’, [‘@weekly](mailto:'@weekly)’, [‘@daily](mailto:'@daily)’, [‘@midnight](mailto:'@midnight)’, [‘@hourly](mailto:'@hourly)’]
+
+
+# cron_pydantic.load_config.html.md
+
+# cron_pydantic.load_config
+
+### cron_pydantic.load_config(path: Path | str) → Self
+
+
+# explanation.html.md
+
+# Why modeling and installation are separate
+
+`cron-pydantic` treats a crontab as data: schedules and commands are validated,
+serialized, parsed, and written to an explicit path. It does not treat the
+current user’s installed crontab as a private resource it can replace.
+
+That boundary matters because traditional crontabs rarely record ownership.
+Several people and deployment tools may edit the same file, while `crontab -r`
+and whole-file installation operate on all entries. A model library cannot know
+which unmanaged lines are safe to remove. Keeping installation outside the
+package makes that ownership decision visible to the caller.
+
+## Cron in the process-management family
+
+Cron starts commands according to wall-clock schedules. It does not supervise a
+process after launch or expose a lifecycle API for long-running work.
+
+[supervisor-pydantic](https://github.com/airflow-laminar/supervisor-pydantic)
+models a dedicated supervisord process tree.
+[systemd-pydantic](https://github.com/airflow-laminar/systemd-pydantic) models
+services and timers managed by the host service manager. Timers stay in the
+systemd package because they activate and share lifecycle with service units.
+
+For Airflow, [airflow-cron](https://github.com/airflow-laminar/airflow-cron)
+translates compatible cron jobs into `airflow-pydantic` DAG models. Airflow then
+owns scheduling and execution; no crontab is installed.
+
+## Round-trip metadata
+
+Named jobs render with `# cron-pydantic: <name>` comments. Those comments let a
+later parse recover stable dictionary keys and disabled entries. Unnamed entries
+from arbitrary crontabs receive generated names such as `job-1`; the command and
+schedule remain the authoritative cron data.
+
+
+# how-to.html.md
+
+# How-to guides
+
+These guides cover common crontab modeling and integration tasks.
+
+## How to load a YAML crontab
+
+Create `cron.yaml`:
+
+```yaml
+environment:
+  PATH: /usr/local/bin:/usr/bin
+job:
+  cleanup:
+    schedule: "30 3 * * sun"
+    command: /opt/jobs/cleanup
+```
+
+Load and render it:
+
+```python
+from cron_pydantic import CronConfiguration
+
+config = CronConfiguration.load("cron.yaml")
+print(config.to_cron())
+```
+
+Use `.yaml` or `.yml` for model input. Other suffixes are parsed as crontab
+text.
+
+## How to render a system crontab
+
+Set `system=True` and provide a user for every job:
+
+```python
+from cron_pydantic import CronConfiguration
+
+config = CronConfiguration.model_validate(
+    {
+        "system": True,
+        "job": {
+            "index": {
+                "schedule": "@hourly",
+                "user": "search",
+                "command": "/opt/search/reindex",
+            }
+        },
+    }
+)
+
+print(config.to_cron())
+```
+
+The rendered entry contains the system-crontab user column:
+
+```text
+@hourly search /opt/search/reindex
+```
+
+## How to convert jobs for airflow-config
+
+Install `airflow-cron` and `airflow-config`, then place generated DAG models in
+an Airflow configuration:
+
+```python
+from airflow_config import Configuration
+from airflow_cron import create_dags
+from cron_pydantic import CronConfiguration
+
+cron = CronConfiguration.load("cron.yaml")
+config = Configuration(dags=create_dags(cron))
+config.generate("generated_dags")
+```
+
+Refer to the [airflow-cron how-to guides](https://github.com/airflow-laminar/airflow-cron/blob/main/docs/src/how-to.md)
+for Airflow-specific defaults and compatibility limits.
+
+## How to deploy rendered content
+
+Write to a staging path first:
+
+```python
+staged = config.write("build/my-crontab")
+```
+
+Pass `staged` to the deployment mechanism that owns the destination, such as a
+configuration-management system or a reviewed `crontab` command. This avoids
+silently replacing entries managed by another tool.
+
+
+# tutorial.html.md
+
+# Tutorial: build a crontab
+
+In this tutorial, we will validate two cron jobs, render their crontab, and
+write it to a temporary file.
+
+## Install the package
+
+```bash
+pip install cron-pydantic
+```
+
+## Create the configuration
+
+Create `example.py`:
+
+```python
+from pathlib import Path
+
+from cron_pydantic import CronConfiguration
+
+config = CronConfiguration.model_validate(
+    {
+        "environment": {"PATH": "/usr/local/bin:/usr/bin"},
+        "job": {
+            "backup": {
+                "schedule": "0 2 * * *",
+                "command": "/opt/jobs/backup",
+            },
+            "weekly-report": {
+                "schedule": "@weekly",
+                "command": "/opt/jobs/report",
+                "enabled": False,
+            },
+        },
+        "path": Path("build/crontab"),
+    }
+)
+
+print(config.to_cron())
+print(config.write())
+```
+
+Run it:
+
+```bash
+python example.py
+```
+
+The output includes the rendered entries and ends with `build/crontab`:
+
+```text
+# Generated by cron-pydantic
+PATH=/usr/local/bin:/usr/bin
+
+# cron-pydantic: backup
+0 2 * * * /opt/jobs/backup
+# cron-pydantic: weekly-report
+# @weekly /opt/jobs/report
+```
+
+Notice that the disabled job remains visible as a comment. The file contains
+the same text printed by `to_cron()`.
+
+## Parse the result
+
+Add these lines to `example.py`:
+
+```python
+loaded = CronConfiguration.load("build/crontab")
+print(loaded.job["backup"].command)
+```
+
+Run the script again. The final line is:
+
+```text
+/opt/jobs/backup
+```
+
+You have now completed a render-write-parse round trip without modifying the
+host scheduler.
+
+

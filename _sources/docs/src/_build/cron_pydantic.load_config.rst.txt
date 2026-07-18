@@ -1,0 +1,6 @@
+﻿cron\_pydantic.load\_config
+===========================
+
+.. currentmodule:: cron_pydantic
+
+.. autofunction:: load_config
