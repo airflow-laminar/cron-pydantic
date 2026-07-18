@@ -144,5 +144,18 @@ section-order = [
 [tool.yardang]
 title = "cron-pydantic"
 root = "README.md"
-pages = []
-use-autoapi = true
+theme = "sphinxawesome_theme"
+pages = [
+    "docs/src/tutorial.md",
+    "docs/src/how-to.md",
+    "docs/src/explanation.md",
+    "docs/src/api.md",
+]
+use-autoapi = false
+
+[tool.yardang.llms]
+enabled = true
+description = "Pydantic models for cron schedules, jobs, and crontab files"
+build-parallel = true
+suffix-mode = "auto"
+full-build = true
