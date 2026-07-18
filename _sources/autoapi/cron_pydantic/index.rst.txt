@@ -1,0 +1,21 @@
+cron_pydantic
+=============
+
+.. py:module:: cron_pydantic
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   cron_pydantic.__version__
+
+
+Package Contents
+----------------
+
+.. py:data:: __version__
+   :value: '0.1.0'
+
+
