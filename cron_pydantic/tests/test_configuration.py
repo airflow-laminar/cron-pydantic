@@ -49,7 +49,7 @@ SHELL=/bin/bash
 
 
 def test_parser_names_unmanaged_jobs() -> None:
-    configuration = CronConfiguration.from_cron("0 0 * * * first\n@daily second\n")
+    configuration = CronConfiguration.from_cron("#comment\n0 0 * * * first\n@daily second\n")
 
     assert list(configuration.job) == ["job-1", "job-2"]
 

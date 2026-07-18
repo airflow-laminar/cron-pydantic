@@ -12,10 +12,11 @@ def test_schedule_round_trip() -> None:
     assert schedule.to_cron() == expression
 
 
-def test_schedule_accepts_integer_and_cronie_random_range() -> None:
-    schedule = CronSchedule(minute=5, hour="1~5")
+@pytest.mark.parametrize("random_range", ["~", "~5", "5~", "1~5"])
+def test_schedule_accepts_integer_and_cronie_random_range(random_range: str) -> None:
+    schedule = CronSchedule(minute=5, hour=random_range)
 
-    assert schedule.to_cron() == "5 1~5 * * *"
+    assert schedule.to_cron() == f"5 {random_range} * * *"
 
 
 @pytest.mark.parametrize(
@@ -30,6 +31,8 @@ def test_schedule_accepts_integer_and_cronie_random_range() -> None:
         ("minute", "*/0"),
         ("minute", "1/2/3"),
         ("minute", "bad"),
+        ("minute", "-5"),
+        ("minute", "5-"),
     ],
 )
 def test_schedule_rejects_invalid_fields(field: str, value: object) -> None:

@@ -47,6 +47,8 @@ def _field(value: object, minimum: int, maximum: int, names: dict[str, int] | No
             start, end = base.split(range_separator, maxsplit=1)
             if range_separator == "~" and not start and not end:
                 continue
+            if range_separator == "-" and (not start or not end):
+                raise ValueError(f"invalid range in cron field: {item!r}")
             if start:
                 _value(start, minimum, maximum, names)
             if end:
