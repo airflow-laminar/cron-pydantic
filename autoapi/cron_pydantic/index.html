@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="prev" title="test_all" href="../test_all/index.html">
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="cron_pydantic.models" href="models/index.html"><link rel="prev" title="API Reference" href="../index.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
         <title>cron_pydantic - cron-pydantic v0.1.0</title>
@@ -198,8 +198,12 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../test_all/index.html">test_all</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">cron_pydantic</a></li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">cron_pydantic</a><input aria-label="Toggle navigation of cron_pydantic" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="models/index.html">cron_pydantic.models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_schedule/index.html">test_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../test_configuration/index.html">test_configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -242,13 +246,42 @@
         <article role="main" id="furo-main-content">
           <section id="module-cron_pydantic">
 <span id="cron-pydantic"></span><h1>cron_pydantic<a class="headerlink" href="#module-cron_pydantic" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="models/index.html">cron_pydantic.models</a></li>
+</ul>
+</div>
+</section>
 <section id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cron_pydantic.__version__" title="cron_pydantic.__version__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__version__</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cron_pydantic.SpecialSchedule" title="cron_pydantic.SpecialSchedule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpecialSchedule</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cron_pydantic.load_config" title="cron_pydantic.load_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_config</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cron_pydantic.CronConfiguration" title="cron_pydantic.CronConfiguration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CronConfiguration</span></code></a></p></td>
+<td><p>Environment and named jobs rendered as one crontab file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cron_pydantic.CronJobConfiguration" title="cron_pydantic.CronJobConfiguration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CronJobConfiguration</span></code></a></p></td>
+<td><p>Command and schedule for one crontab entry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cron_pydantic.CronSchedule" title="cron_pydantic.CronSchedule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CronSchedule</span></code></a></p></td>
+<td><p>Five-field Vixie/Cronie schedule.</p></td>
 </tr>
 </tbody>
 </table>
@@ -256,9 +289,210 @@
 </section>
 <section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cron_pydantic.</span></span><span class="sig-name descname"><span class="pre">CronConfiguration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronConfiguration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronConfiguration" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Environment and named jobs rendered as one crontab file.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#cron_pydantic.CronConfiguration.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.job">
+<span class="sig-name descname"><span class="pre">job</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#cron_pydantic.CronJobConfiguration" title="cron_pydantic.CronJobConfiguration"><span class="pre">CronJobConfiguration</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cron_pydantic.CronConfiguration.job" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.environment">
+<span class="sig-name descname"><span class="pre">environment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cron_pydantic.CronConfiguration.environment" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.system">
+<span class="sig-name descname"><span class="pre">system</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#cron_pydantic.CronConfiguration.system" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.path">
+<span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cron_pydantic.CronConfiguration.path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration._environment">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_environment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronConfiguration._environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronConfiguration._environment" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration._system_users">
+<span class="sig-name descname"><span class="pre">_system_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronConfiguration._system_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronConfiguration._system_users" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.to_cron">
+<span class="sig-name descname"><span class="pre">to_cron</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronConfiguration.to_cron"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronConfiguration.to_cron" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronConfiguration.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronConfiguration.write" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.from_cron">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_cron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronConfiguration.from_cron"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronConfiguration.from_cron" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronConfiguration.load">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronConfiguration.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronConfiguration.load" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cron_pydantic.</span></span><span class="sig-name descname"><span class="pre">CronJobConfiguration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronJobConfiguration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronJobConfiguration" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Command and schedule for one crontab entry.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#cron_pydantic.CronJobConfiguration.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration.schedule">
+<span class="sig-name descname"><span class="pre">schedule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cron_pydantic.CronSchedule" title="cron_pydantic.CronSchedule"><span class="pre">CronSchedule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">SpecialSchedule</span></em><a class="headerlink" href="#cron_pydantic.CronJobConfiguration.schedule" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration.command">
+<span class="sig-name descname"><span class="pre">command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Command</span></em><a class="headerlink" href="#cron_pydantic.CronJobConfiguration.command" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration.user">
+<span class="sig-name descname"><span class="pre">user</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cron_pydantic.CronJobConfiguration.user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration.enabled">
+<span class="sig-name descname"><span class="pre">enabled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#cron_pydantic.CronJobConfiguration.enabled" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration._schedule">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronJobConfiguration._schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronJobConfiguration._schedule" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration._user">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronJobConfiguration._user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronJobConfiguration._user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronJobConfiguration.to_cron">
+<span class="sig-name descname"><span class="pre">to_cron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronJobConfiguration.to_cron"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronJobConfiguration.to_cron" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cron_pydantic.</span></span><span class="sig-name descname"><span class="pre">CronSchedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<p>Five-field Vixie/Cronie schedule.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#cron_pydantic.CronSchedule.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.minute">
+<span class="sig-name descname"><span class="pre">minute</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'*'</span></em><a class="headerlink" href="#cron_pydantic.CronSchedule.minute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.hour">
+<span class="sig-name descname"><span class="pre">hour</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'*'</span></em><a class="headerlink" href="#cron_pydantic.CronSchedule.hour" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.day_of_month">
+<span class="sig-name descname"><span class="pre">day_of_month</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'*'</span></em><a class="headerlink" href="#cron_pydantic.CronSchedule.day_of_month" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.month">
+<span class="sig-name descname"><span class="pre">month</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'*'</span></em><a class="headerlink" href="#cron_pydantic.CronSchedule.month" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.day_of_week">
+<span class="sig-name descname"><span class="pre">day_of_week</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'*'</span></em><a class="headerlink" href="#cron_pydantic.CronSchedule.day_of_week" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule._minute">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_minute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule._minute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule._minute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule._hour">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_hour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule._hour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule._hour" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule._day_of_month">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_day_of_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule._day_of_month"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule._day_of_month" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule._month">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule._month"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule._month" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule._day_of_week">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_day_of_week</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule._day_of_week"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule._day_of_week" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.to_cron">
+<span class="sig-name descname"><span class="pre">to_cron</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule.to_cron"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule.to_cron" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cron_pydantic.CronSchedule.from_cron">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_cron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="reference internal" href="../../_modules/cron_pydantic/models.html#CronSchedule.from_cron"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cron_pydantic.CronSchedule.from_cron" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py data">
-<dt class="sig sig-object py" id="cron_pydantic.__version__">
-<span class="sig-prename descclassname"><span class="pre">cron_pydantic.</span></span><span class="sig-name descname"><span class="pre">__version__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'0.1.0'</span></em><a class="headerlink" href="#cron_pydantic.__version__" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cron_pydantic.SpecialSchedule">
+<span class="sig-prename descclassname"><span class="pre">cron_pydantic.</span></span><span class="sig-name descname"><span class="pre">SpecialSchedule</span></span><a class="headerlink" href="#cron_pydantic.SpecialSchedule" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="cron_pydantic.load_config">
+<span class="sig-prename descclassname"><span class="pre">cron_pydantic.</span></span><span class="sig-name descname"><span class="pre">load_config</span></span><a class="headerlink" href="#cron_pydantic.load_config" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -269,15 +503,23 @@
       <footer>
         
         <div class="related-pages">
-          
-          <a class="prev-page" href="../test_all/index.html">
+          <a class="next-page" href="models/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">cron_pydantic.models</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">test_all</div>
+                <div class="title">API Reference</div>
                 
               </div>
             </a>
@@ -312,9 +554,53 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">cron_pydantic</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#attributes">Attributes</a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
-<li><a class="reference internal" href="#cron_pydantic.__version__"><code class="docutils literal notranslate"><span class="pre">__version__</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration"><code class="docutils literal notranslate"><span class="pre">CronConfiguration</span></code></a><ul>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.model_config"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.model_config</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.job"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.job</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.environment"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.environment</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.system"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.system</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.path"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.path</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration._environment"><code class="docutils literal notranslate"><span class="pre">CronConfiguration._environment()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration._system_users"><code class="docutils literal notranslate"><span class="pre">CronConfiguration._system_users()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.to_cron"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.to_cron()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.write"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.write()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.from_cron"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.from_cron()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronConfiguration.load"><code class="docutils literal notranslate"><span class="pre">CronConfiguration.load()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration</span></code></a><ul>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration.model_config"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration.model_config</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration.schedule"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration.schedule</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration.command"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration.command</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration.user"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration.user</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration.enabled"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration.enabled</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration._schedule"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration._schedule()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration._user"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration._user()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronJobConfiguration.to_cron"><code class="docutils literal notranslate"><span class="pre">CronJobConfiguration.to_cron()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule"><code class="docutils literal notranslate"><span class="pre">CronSchedule</span></code></a><ul>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.model_config"><code class="docutils literal notranslate"><span class="pre">CronSchedule.model_config</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.minute"><code class="docutils literal notranslate"><span class="pre">CronSchedule.minute</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.hour"><code class="docutils literal notranslate"><span class="pre">CronSchedule.hour</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.day_of_month"><code class="docutils literal notranslate"><span class="pre">CronSchedule.day_of_month</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.month"><code class="docutils literal notranslate"><span class="pre">CronSchedule.month</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.day_of_week"><code class="docutils literal notranslate"><span class="pre">CronSchedule.day_of_week</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule._minute"><code class="docutils literal notranslate"><span class="pre">CronSchedule._minute()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule._hour"><code class="docutils literal notranslate"><span class="pre">CronSchedule._hour()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule._day_of_month"><code class="docutils literal notranslate"><span class="pre">CronSchedule._day_of_month()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule._month"><code class="docutils literal notranslate"><span class="pre">CronSchedule._month()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule._day_of_week"><code class="docutils literal notranslate"><span class="pre">CronSchedule._day_of_week()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.to_cron"><code class="docutils literal notranslate"><span class="pre">CronSchedule.to_cron()</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.CronSchedule.from_cron"><code class="docutils literal notranslate"><span class="pre">CronSchedule.from_cron()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cron_pydantic.SpecialSchedule"><code class="docutils literal notranslate"><span class="pre">SpecialSchedule</span></code></a></li>
+<li><a class="reference internal" href="#cron_pydantic.load_config"><code class="docutils literal notranslate"><span class="pre">load_config</span></code></a></li>
 </ul>
 </li>
 </ul>

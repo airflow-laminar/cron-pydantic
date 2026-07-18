@@ -198,8 +198,12 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="autoapi/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="autoapi/test_all/index.html">test_all</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autoapi/cron_pydantic/index.html">cron_pydantic</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/cron_pydantic/index.html">cron_pydantic</a><input aria-label="Toggle navigation of cron_pydantic" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/cron_pydantic/models/index.html">cron_pydantic.models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_schedule/index.html">test_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_configuration/index.html">test_configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -244,13 +248,86 @@
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="cron-pydantic">
 <h1>cron-pydantic<a class="headerlink" href="#cron-pydantic" title="Link to this heading">¶</a></h1>
-<p>Pydantic models for cron</p>
+<p>Pydantic models for cron schedules, jobs, and crontab files.</p>
 <p><a class="reference external" href="https://github.com/airflow-laminar/cron-pydantic/actions/workflows/build.yaml"><img alt="Build Status" src="https://github.com/airflow-laminar/cron-pydantic/actions/workflows/build.yaml/badge.svg?branch=main&amp;event=push" /></a>
 <a class="reference external" href="https://codecov.io/gh/airflow-laminar/cron-pydantic"><img alt="codecov" src="https://codecov.io/gh/airflow-laminar/cron-pydantic/branch/main/graph/badge.svg" /></a>
 <a class="reference external" href="https://github.com/airflow-laminar/cron-pydantic"><img alt="License" src="https://img.shields.io/github/license/airflow-laminar/cron-pydantic" /></a>
 <a class="reference external" href="https://pypi.python.org/pypi/cron-pydantic"><img alt="PyPI" src="https://img.shields.io/pypi/v/cron-pydantic.svg" /></a></p>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cron-pydantic
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Define a crontab from Python or validate the equivalent YAML with
+<code class="docutils literal notranslate"><span class="pre">CronConfiguration.model_validate</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cron_pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">CronConfiguration</span>
+
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">CronConfiguration</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;PATH&quot;</span><span class="p">:</span> <span class="s2">&quot;/usr/local/bin:/usr/bin&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;backup&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="s2">&quot;0 2 * * *&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/bin/backup&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;cleanup&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="s2">&quot;@weekly&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/bin/cleanup&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">to_cron</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>This renders:</p>
+<div class="highlight-cron notranslate"><div class="highlight"><pre><span></span># Generated by cron-pydantic
+PATH=/usr/local/bin:/usr/bin
+
+# cron-pydantic: backup
+0 2 * * * /opt/bin/backup
+# cron-pydantic: cleanup
+# @weekly /opt/bin/cleanup
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">system=True</span></code> and provide each job’s <code class="docutils literal notranslate"><span class="pre">user</span></code> to render <code class="docutils literal notranslate"><span class="pre">/etc/crontab</span></code> or
+<code class="docutils literal notranslate"><span class="pre">/etc/cron.d</span></code> format:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">configuration</span> <span class="o">=</span> <span class="n">CronConfiguration</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;system&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;backup&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;schedule&quot;</span><span class="p">:</span> <span class="s2">&quot;@daily&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/bin/backup&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Parse existing content with <code class="docutils literal notranslate"><span class="pre">CronConfiguration.from_cron</span></code>, load YAML or crontab
+files with <code class="docutils literal notranslate"><span class="pre">CronConfiguration.load</span></code>, and write rendered content with
+<code class="docutils literal notranslate"><span class="pre">configuration.write(path)</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cron-pydantic</span></code> does not install a crontab or modify the host scheduler. This
+keeps rendering and validation separate from deployment and avoids replacing
+unmanaged crontab entries.</p>
+</section>
+<section id="supported-syntax">
+<h2>Supported syntax<a class="headerlink" href="#supported-syntax" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Five-field user crontab schedules</p></li>
+<li><p>Six-field system crontab entries containing a user</p></li>
+<li><p>Lists, ranges, steps, month and weekday names, and Cronie random ranges</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;reboot</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;yearly</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;annually</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;monthly</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;weekly</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;daily</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&#64;midnight</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;hourly</span></code></p></li>
+<li><p>Environment assignments and disabled jobs</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This library was generated using <a class="reference external" href="https://copier.readthedocs.io/en/stable/">copier</a> from the <a class="reference external" href="https://github.com/python-project-templates/base">Base Python Project Template repository</a>.</p>

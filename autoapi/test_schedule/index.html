@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="cron_pydantic" href="../cron_pydantic/index.html"><link rel="prev" title="API Reference" href="../index.html">
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="test_configuration" href="../test_configuration/index.html"><link rel="prev" title="cron_pydantic.models" href="../cron_pydantic/models/index.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>test_all - cron-pydantic v0.1.0</title>
+        <title>test_schedule - cron-pydantic v0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -198,8 +198,12 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">test_all</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cron_pydantic/index.html">cron_pydantic</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cron_pydantic/index.html">cron_pydantic</a><input aria-label="Toggle navigation of cron_pydantic" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cron_pydantic/models/index.html">cron_pydantic.models</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">test_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../test_configuration/index.html">test_configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -222,7 +226,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../../_sources/autoapi/test_all/index.rst.txt" title="View this page">
+  <a class="muted-link" href="../../_sources/autoapi/test_schedule/index.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -240,14 +244,41 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-test_all">
-<span id="test-all"></span><h1>test_all<a class="headerlink" href="#module-test_all" title="Link to this heading">¶</a></h1>
+          <section id="module-test_schedule">
+<span id="test-schedule"></span><h1>test_schedule<a class="headerlink" href="#module-test_schedule" title="Link to this heading">¶</a></h1>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#test_all.test_all" title="test_all.test_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_all</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test_schedule.test_schedule_round_trip" title="test_schedule.test_schedule_round_trip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_schedule_round_trip</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test_schedule.test_schedule_accepts_integer_and_cronie_random_range" title="test_schedule.test_schedule_accepts_integer_and_cronie_random_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_schedule_accepts_integer_and_cronie_random_range</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test_schedule.test_schedule_rejects_invalid_fields" title="test_schedule.test_schedule_rejects_invalid_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_schedule_rejects_invalid_fields</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test_schedule.test_schedule_requires_five_fields" title="test_schedule.test_schedule_requires_five_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_schedule_requires_five_fields</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test_schedule.test_job_accepts_schedule_expression" title="test_schedule.test_job_accepts_schedule_expression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_job_accepts_schedule_expression</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test_schedule.test_job_accepts_special_schedule" title="test_schedule.test_job_accepts_special_schedule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_job_accepts_special_schedule</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test_schedule.test_system_job_requires_user" title="test_schedule.test_system_job_requires_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_system_job_requires_user</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test_schedule.test_system_job_renders_user" title="test_schedule.test_system_job_renders_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_system_job_renders_user</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#test_schedule.test_job_rejects_invalid_user" title="test_schedule.test_job_rejects_invalid_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_job_rejects_invalid_user</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#test_schedule.test_job_rejects_empty_command" title="test_schedule.test_job_rejects_empty_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_job_rejects_empty_command</span></code></a>(→ None)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -257,8 +288,53 @@
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="test_all.test_all">
-<span class="sig-prename descclassname"><span class="pre">test_all.</span></span><span class="sig-name descname"><span class="pre">test_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_all.test_all" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="test_schedule.test_schedule_round_trip">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_schedule_round_trip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_schedule_round_trip" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_schedule_accepts_integer_and_cronie_random_range">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_schedule_accepts_integer_and_cronie_random_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">random_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_schedule_accepts_integer_and_cronie_random_range" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_schedule_rejects_invalid_fields">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_schedule_rejects_invalid_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_schedule_rejects_invalid_fields" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_schedule_requires_five_fields">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_schedule_requires_five_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_schedule_requires_five_fields" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_job_accepts_schedule_expression">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_job_accepts_schedule_expression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_job_accepts_schedule_expression" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_job_accepts_special_schedule">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_job_accepts_special_schedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_job_accepts_special_schedule" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_system_job_requires_user">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_system_job_requires_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_system_job_requires_user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_system_job_renders_user">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_system_job_renders_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_system_job_renders_user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_job_rejects_invalid_user">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_job_rejects_invalid_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_job_rejects_invalid_user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_schedule.test_job_rejects_empty_command">
+<span class="sig-prename descclassname"><span class="pre">test_schedule.</span></span><span class="sig-name descname"><span class="pre">test_job_rejects_empty_command</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#test_schedule.test_job_rejects_empty_command" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -269,23 +345,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../cron_pydantic/index.html">
+          <a class="next-page" href="../test_configuration/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">cron_pydantic</div>
+                <div class="title">test_configuration</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../index.html">
+          <a class="prev-page" href="../cron_pydantic/models/index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">API Reference</div>
+                <div class="title">cron_pydantic.models</div>
                 
               </div>
             </a>
@@ -319,10 +395,19 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">test_all</a><ul>
+<li><a class="reference internal" href="#">test_schedule</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li><a class="reference internal" href="#test_all.test_all"><code class="docutils literal notranslate"><span class="pre">test_all()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_schedule_round_trip"><code class="docutils literal notranslate"><span class="pre">test_schedule_round_trip()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_schedule_accepts_integer_and_cronie_random_range"><code class="docutils literal notranslate"><span class="pre">test_schedule_accepts_integer_and_cronie_random_range()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_schedule_rejects_invalid_fields"><code class="docutils literal notranslate"><span class="pre">test_schedule_rejects_invalid_fields()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_schedule_requires_five_fields"><code class="docutils literal notranslate"><span class="pre">test_schedule_requires_five_fields()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_job_accepts_schedule_expression"><code class="docutils literal notranslate"><span class="pre">test_job_accepts_schedule_expression()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_job_accepts_special_schedule"><code class="docutils literal notranslate"><span class="pre">test_job_accepts_special_schedule()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_system_job_requires_user"><code class="docutils literal notranslate"><span class="pre">test_system_job_requires_user()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_system_job_renders_user"><code class="docutils literal notranslate"><span class="pre">test_system_job_renders_user()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_job_rejects_invalid_user"><code class="docutils literal notranslate"><span class="pre">test_job_rejects_invalid_user()</span></code></a></li>
+<li><a class="reference internal" href="#test_schedule.test_job_rejects_empty_command"><code class="docutils literal notranslate"><span class="pre">test_job_rejects_empty_command()</span></code></a></li>
 </ul>
 </li>
 </ul>

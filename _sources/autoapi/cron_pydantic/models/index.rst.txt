@@ -1,0 +1,259 @@
+cron_pydantic.models
+====================
+
+.. py:module:: cron_pydantic.models
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   cron_pydantic.models.SpecialSchedule
+   cron_pydantic.models.Command
+   cron_pydantic.models._MONTHS
+   cron_pydantic.models._WEEKDAYS
+   cron_pydantic.models.load_config
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   cron_pydantic.models.CronSchedule
+   cron_pydantic.models.CronJobConfiguration
+   cron_pydantic.models.CronConfiguration
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   cron_pydantic.models._value
+   cron_pydantic.models._field
+   cron_pydantic.models._environment_value
+
+
+Module Contents
+---------------
+
+.. py:data:: SpecialSchedule
+
+.. py:data:: Command
+
+.. py:data:: _MONTHS
+
+.. py:data:: _WEEKDAYS
+
+.. py:function:: _value(value: str, minimum: int, maximum: int, names: dict[str, int]) -> None
+
+.. py:function:: _field(value: object, minimum: int, maximum: int, names: dict[str, int] | None = None) -> str
+
+.. py:class:: CronSchedule(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Five-field Vixie/Cronie schedule.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: minute
+      :type:  str | int
+      :value: '*'
+
+
+
+   .. py:attribute:: hour
+      :type:  str | int
+      :value: '*'
+
+
+
+   .. py:attribute:: day_of_month
+      :type:  str | int
+      :value: '*'
+
+
+
+   .. py:attribute:: month
+      :type:  str | int
+      :value: '*'
+
+
+
+   .. py:attribute:: day_of_week
+      :type:  str | int
+      :value: '*'
+
+
+
+   .. py:method:: _minute(value: object) -> str
+      :classmethod:
+
+
+
+   .. py:method:: _hour(value: object) -> str
+      :classmethod:
+
+
+
+   .. py:method:: _day_of_month(value: object) -> str
+      :classmethod:
+
+
+
+   .. py:method:: _month(value: object) -> str
+      :classmethod:
+
+
+
+   .. py:method:: _day_of_week(value: object) -> str
+      :classmethod:
+
+
+
+   .. py:method:: to_cron() -> str
+
+
+   .. py:method:: from_cron(expression: str) -> Self
+      :classmethod:
+
+
+
+.. py:class:: CronJobConfiguration(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Command and schedule for one crontab entry.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: schedule
+      :type:  CronSchedule | SpecialSchedule
+
+
+   .. py:attribute:: command
+      :type:  Command
+
+
+   .. py:attribute:: user
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+      :value: True
+
+
+
+   .. py:method:: _schedule(value: object) -> object
+      :classmethod:
+
+
+
+   .. py:method:: _user(value: str | None) -> str | None
+      :classmethod:
+
+
+
+   .. py:method:: to_cron(system: bool = False) -> str
+
+
+.. py:function:: _environment_value(value: str) -> str
+
+.. py:class:: CronConfiguration(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Environment and named jobs rendered as one crontab file.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: job
+      :type:  dict[str, CronJobConfiguration]
+
+
+   .. py:attribute:: environment
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: system
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: path
+      :type:  pathlib.Path | None
+      :value: None
+
+
+
+   .. py:method:: _environment(value: dict[str, str]) -> dict[str, str]
+      :classmethod:
+
+
+
+   .. py:method:: _system_users() -> Self
+
+
+   .. py:method:: to_cron() -> str
+
+
+   .. py:method:: write(path: pathlib.Path | str | None = None) -> pathlib.Path
+
+
+   .. py:method:: from_cron(contents: str, *, system: bool = False, path: pathlib.Path | None = None) -> Self
+      :classmethod:
+
+
+
+   .. py:method:: load(path: pathlib.Path | str) -> Self
+      :classmethod:
+
+
+
+.. py:data:: load_config
+

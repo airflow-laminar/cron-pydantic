@@ -6,7 +6,8 @@ This page contains auto-generated API reference documentation [#f1]_.
 .. toctree::
    :titlesonly:
 
-   /autoapi/test_all/index
    /autoapi/cron_pydantic/index
+   /autoapi/test_schedule/index
+   /autoapi/test_configuration/index
 
 .. [#f1] Created with `sphinx-autoapi <https://github.com/readthedocs/sphinx-autoapi>`_
