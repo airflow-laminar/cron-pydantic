@@ -1,12 +1,12 @@
 # cron_pydantic.CronJobConfiguration
 
-### *pydantic model* cron_pydantic.CronJobConfiguration
+### *pydantic model* cron_pydantic.CronJobConfiguration[[source]](../../../_modules/cron_pydantic/models.html.md#CronJobConfiguration)
 
 Bases: `BaseModel`
 
 Command and schedule for one crontab entry.
 
-#### *field* schedule *: [CronSchedule](cron_pydantic.CronSchedule.md#cron_pydantic.CronSchedule) | SpecialSchedule* *[Required]*
+#### *field* schedule *: [CronSchedule](cron_pydantic.CronSchedule.html.md#cron_pydantic.CronSchedule) | SpecialSchedule* *[Required]*
 
 #### *field* command *: Command* *[Required]*
 
@@ -14,4 +14,4 @@ Command and schedule for one crontab entry.
 
 #### *field* enabled *: bool* *= True*
 
-#### to_cron(system: bool = False) → str
+#### to_cron(system: bool = False) → str[[source]](../../../_modules/cron_pydantic/models.html.md#CronJobConfiguration.to_cron)
