@@ -2,4 +2,4 @@ from .models import CronConfiguration, CronJobConfiguration, CronSchedule, Speci
 
 __all__ = ("CronConfiguration", "CronJobConfiguration", "CronSchedule", "SpecialSchedule", "load_config")
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
